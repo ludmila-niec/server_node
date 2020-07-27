@@ -16,12 +16,12 @@ function checkComision(req, res, next) {
 //POST
 //verificar que esten las propiedades
 //nombre, apellido, comision
+//aca deberia checkear el request body y no los query parameters
 function checkPostBody(req, res, next) {
-    console.log(req.url);
-    let nombre = req.query.nombre;
-    let apellido = req.query.apellido;
-    let comision = req.query.comision;
-
+    let data = req.body;
+    let nombre = data.nombre;
+    let apellido = data.apellido;
+    let comision = data.comision;
     if (!nombre) {
         res.status(400).send("Falta el nombre del alumno");
     }
