@@ -70,23 +70,41 @@ function filtroNombre(lista, q) {
 }
 
 //probar con metodo find. array.find() devuelve el primer match sino undefined
+// function filtroComisionYid(comision, id) {
+//     let filtro = alumnos.filter((a) => a.comision == comision && a.id == id);
+//     return filtro;
+// }
 function filtroComisionYid(comision, id) {
-    let filtro = alumnos.filter((a) => a.comision == comision && a.id == id);
+    let filtro = alumnos.find((a) => a.comision == comision && a.id == id);
     return filtro;
 }
 
-function eliminarAlumnoById(alumnoFiltrado) {
-    let alumno = alumnoFiltrado[0];
-    // for (const property in alumno) {
-    //     delete property;
-    // }
-    delete alumno.id
-    delete alumno.comision
-    delete alumno.nombre
-    delete alumno.apellido
-    console.log(alumno);
-    
-    return alumno;
+// function eliminarAlumnoById(alumnoFiltrado) {
+//     let alumno = alumnoFiltrado;
+//     // for (const property in alumno) {
+//     //     delete property;
+//     // }
+//     delete alumno.id;
+//     delete alumno.comision;
+//     delete alumno.nombre;
+//     delete alumno.apellido;
+//     console.log(alumno);
+
+//     return alumno;
+// }
+function eliminarAlumnoById(alumno) {
+    let alumnoIndex = alumnos.indexOf(alumno);
+    alumnos.splice(alumnoIndex, 1);
+    return alumnos;
+}
+
+//variable global
+let indiceAlumno = 9;
+function altaAlumno(data) {
+    data.id = indiceAlumno++;
+    console.log(data);
+    alumnos.push(data);
+    return data;
 }
 
 module.exports = {
@@ -95,4 +113,5 @@ module.exports = {
     filtroNombre: filtroNombre,
     filtroComisionYid: filtroComisionYid,
     eliminarAlumnoById: eliminarAlumnoById,
+    altaAlumno: altaAlumno,
 };
